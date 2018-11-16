@@ -14,28 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib.auth.models import User
-from rest_framework import routers, serializers
+
+from awsiot import views
+from awsiot.auth.auth import CustomObtainJSONWebToken, CustomVerifyJSONWebToken
 
 # Serializers define the API representation.
-from awsiot import views
 
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ('url', 'username', 'email', 'is_staff')
-
-
-# Routers provide an easy way of automatically determining the URL conf.
-router = routers.DefaultRouter()
-router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
-
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url('', include('awsiot.urls')),
+    url(r'api-token-auth/', CustomObtainJSONWebToken.as_view()),
+    url(r'refresh', CustomVerifyJSONWebToken.as_view()),
+    url('index',views.index)
 ]

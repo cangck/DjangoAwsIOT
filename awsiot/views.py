@@ -1,28 +1,46 @@
-from django.contrib.auth.models import User, Group
-from django.http.response import HttpResponse
+import json
 
-
+from django.contrib.auth.models import User
 # Create your views here.
-from rest_framework import viewsets
+from rest_framework import permissions, status
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from awsiot.serializer.serializer import UserSerializer, GroupSerializer
+import time
+
+from awsiot.serializer.serializer import RegisterSerializer
+
+
+def result(code, data):
+    return '{' + "code:" + str(code) + '\",{' + "data:" + json.dumps(data) + '}' + '}'
 
 
 def index(request):
-    return HttpResponse("AwsIotWeb");
+    return Response("hello")
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
+class UserViewSet(APIView):
+
+    def get(self, request):
+        usernames = [user.username for user in User.objects.all()]
+        return Response(usernames)
 
 
-class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+class UserRegister(APIView):
+    '''
+       用户登录信息处理流程
+       '''
+    # 设置当前的View不需要认证权限
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = RegisterSerializer
+
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors)
+        serializer.save()
+        return Response({
+            'code': status.HTTP_200_OK,
+            'data': serializer.validated_data
+        }, content_type='application/json')
