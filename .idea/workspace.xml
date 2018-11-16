@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d70e452f-621b-4c36-a09b-15cdabb678d6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/awsiot/serializer/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/awsiot/serializer/serializer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AwsIotWeb/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AwsIotWeb/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AwsIotWeb/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AwsIotWeb/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/awsiot/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/awsiot/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +17,7 @@
         <entry file="file://$PROJECT_DIR$/awsiot/serializer/serializer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -45,8 +40,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AwsIotWeb/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+            <state relative-caret-position="323">
+              <caret line="125" column="46" selection-start-line="125" selection-start-column="46" selection-end-line="125" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -119,12 +114,6 @@
               <item name="AwsIotWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="AwsIotWeb" type="462c0819:PsiDirectoryNode" />
               <item name="awsiot" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AwsIotWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AwsIotWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="awsiot" type="462c0819:PsiDirectoryNode" />
-              <item name="serializer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AwsIotWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -208,7 +197,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.16089614" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.50509167" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="right" id="Database" />
@@ -278,7 +267,7 @@
     <entry file="file://$PROJECT_DIR$/awsiot/serializer/serializer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
@@ -307,8 +296,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AwsIotWeb/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+        <state relative-caret-position="323">
+          <caret line="125" column="46" selection-start-line="125" selection-start-column="46" selection-end-line="125" selection-end-column="46" />
         </state>
       </provider>
     </entry>
