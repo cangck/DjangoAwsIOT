@@ -40,9 +40,9 @@ class UserRegister(APIView):
         if not serializer.is_valid():
             return Response({
                 'code': status.HTTP_400_BAD_REQUEST,
-                'data': serializer.validated_data,
+                'data': serializer.data,
                 'extrs': serializer.errors
-            })
+            }, content_type='application/json')
         serializer.save()
         return Response({
             'code': status.HTTP_200_OK,
