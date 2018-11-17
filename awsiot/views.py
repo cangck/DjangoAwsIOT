@@ -38,9 +38,14 @@ class UserRegister(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if not serializer.is_valid():
-            return Response(serializer.errors)
+            return Response({
+                'code': status.HTTP_400_BAD_REQUEST,
+                'data': serializer.validated_data,
+                'extrs': serializer.errors
+            })
         serializer.save()
         return Response({
             'code': status.HTTP_200_OK,
-            'data': serializer.validated_data
+            'data': serializer.validated_data,
+            'extrs': ""
         }, content_type='application/json')
