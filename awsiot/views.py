@@ -41,7 +41,7 @@ class UserRegister(APIView):
             return Response({
                 'code': status.HTTP_400_BAD_REQUEST,
                 'data': serializer.data,
-                'extrs': serializer.errors
+                'extrs': serializer.errors['username']
             }, content_type='application/json')
         serializer.save()
         return Response({
