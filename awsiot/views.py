@@ -47,5 +47,5 @@ class UserRegister(APIView):
         return Response({
             'code': status.HTTP_200_OK,
             'data': serializer.validated_data,
-            'extrs': ""
+            'extrs': []
         }, content_type='application/json')
