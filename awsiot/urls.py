@@ -17,7 +17,12 @@ from django.urls import path
 
 from . import views
 
+app_lable = 'awsiot'
 urlpatterns = [
     path('users/', views.UserViewSet.as_view()),
-    path('register/', views.UserRegister.as_view())
+    # 用户登录
+    path('register/', views.UserRegister.as_view()),
+    path('login/', views.UserRegister.as_view()),
+    path('test/', views.TestView.as_view(), name='test'),
+    path('test1/', views.TestView.as_view(), name='test'),
 ]
