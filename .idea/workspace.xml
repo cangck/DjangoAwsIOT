@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d70e452f-621b-4c36-a09b-15cdabb678d6" name="Default" comment="" />
+    <list default="true" id="d70e452f-621b-4c36-a09b-15cdabb678d6" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/awsiot/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/awsiot/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,8 +35,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/awsiot/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="92" column="35" lean-forward="true" selection-start-line="92" selection-start-column="35" selection-end-line="92" selection-end-column="35" />
+            <state relative-caret-position="355">
+              <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
               <folding>
                 <element signature="e#249#274#0" />
                 <element signature="e#479#496#0" />
@@ -43,7 +46,7 @@
                 <element signature="e#2179#2211#1" />
                 <element signature="e#2103#2413#0" />
                 <element signature="e#2209#2377#0" />
-                <marker date="1542617872000" expanded="true" signature="3027:3174" ph="..." />
+                <marker date="1542621518000" expanded="true" signature="3027:3174" ph="..." />
               </folding>
             </state>
           </provider>
@@ -262,7 +265,7 @@
       <window_info anchor="bottom" id="Python Console" weight="0.3299389" />
       <window_info anchor="right" id="Coverage" side_tool="true" />
       <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.4378819" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="SciView" />
@@ -558,8 +561,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/awsiot/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="92" column="35" lean-forward="true" selection-start-line="92" selection-start-column="35" selection-end-line="92" selection-end-column="35" />
+        <state relative-caret-position="355">
+          <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
           <folding>
             <element signature="e#249#274#0" />
             <element signature="e#479#496#0" />
@@ -569,7 +572,7 @@
             <element signature="e#2179#2211#1" />
             <element signature="e#2103#2413#0" />
             <element signature="e#2209#2377#0" />
-            <marker date="1542617872000" expanded="true" signature="3027:3174" ph="..." />
+            <marker date="1542621518000" expanded="true" signature="3027:3174" ph="..." />
           </folding>
         </state>
       </provider>

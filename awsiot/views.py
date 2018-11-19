@@ -83,7 +83,7 @@ class UserRegister(APIView):
                     user = User.objects.get(username=username)
                 except User.DoesNotExist:
                     mobsms = MobSMS(MOB_KEY)
-                    result_code = mobsms.verify_sms_code(zone, phone=phone, code=code, debug=False)
+                    result_code = mobsms.verify_sms_code("86", phone=phone, code=code, debug=False)
                     print(str(result_code))
                     result_code = 200
                     if result_code == MobStatus.MOBSTATUS_SUCCESS:
@@ -105,7 +105,7 @@ class UserRegister(APIView):
 
                 return Response({
                     'code': status.HTTP_400_BAD_REQUEST,
-                    'data': request.data,
+                    'data': str(request.data),
                     'msg': "当前用户已存在!!!"
                 }, content_type='application/json')
 
