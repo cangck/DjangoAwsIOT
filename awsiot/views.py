@@ -3,15 +3,22 @@ import json
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 # Create your views here.
+from django.utils import timezone
 from rest_framework import permissions, status
 from rest_framework.response import Response
+from rest_framework_jwt.settings import api_settings
 from rest_framework.views import APIView
 
+from AwsIotWeb import settings
 from awsiot.thirdSdk.mobsmssdk import MobSMS, MOB_KEY, MobStatus
 
 
-def result(code, data):
-    return '{' + "code:" + str(code) + '\",{' + "data:" + json.dumps(data) + '}' + '}'
+def resultJson(code, data, msg):
+    return Response({
+        'code': code,
+        'data': data,
+        'msg': msg
+    }, content_type='application/json')
 
 
 def index(request):
@@ -25,47 +32,10 @@ class UserViewSet(APIView):
         return Response(usernames)
 
 
-# class UserRegister(APIView):
-#     '''
-#        用户登录信息处理流程
-#        '''
-#     # 设置当前的View不需要认证权限
-#     permission_classes = (permissions.AllowAny,)
-#     serializer_class = RegisterSerializer
-#
-#     def post(self, request):
-#         serializer = RegisterSerializer(data=request.data)
-#         # 验证用户名密码不正确
-#         if not serializer.is_valid():
-#             return Response({
-#                 'code': status.HTTP_400_BAD_REQUEST,
-#                 'data': serializer.data,
-#                 'extrs': serializer.errors['username']
-#             }, content_type='application/json')
-#         code = request.data["code"];
-#         mobsms = MobSMS('28d339dc325c0')
-#         result_code = mobsms.verify_sms_code(86, 15112286305, '6825', debug=False)
-#         # 请求成功,保存进入数据库
-#         if result_code == MobStatus.MOBSTATUS_SUCCESS:
-#             serializer.save()
-#             return Response({
-#                 'code': status.HTTP_200_OK,
-#                 'data': serializer.validated_data,
-#                 'extrs': []
-#             }, content_type='application/json')
-#         else:
-#             # 验证码不对
-#             return Response({
-#                 'code': status.HTTP_200_OK,
-#                 'data': serializer.validated_data,
-#                 'extrs': []
-#             }, content_type='application/json')
-
-
 class UserRegister(APIView):
     '''
        用户登录信息处理流程
-       '''
+    '''
     # 设置当前的View不需要认证权限
     permission_classes = (permissions.AllowAny,)
 
@@ -83,34 +53,43 @@ class UserRegister(APIView):
                     user = User.objects.get(username=username)
                 except User.DoesNotExist:
                     mobsms = MobSMS(MOB_KEY)
+                    # 第三方服务器验证短信登录信息
                     result_code = mobsms.verify_sms_code("86", phone=phone, code=code, debug=False)
-                    print(str(result_code))
                     result_code = 200
                     if result_code == MobStatus.MOBSTATUS_SUCCESS:
                         user = User.objects.create()
                         user.username = username
                         user.password = make_password(password, salt='pbkdf2_sha256')
                         user.save()
-                        return Response({
-                            'code': result_code,
-                            'data': "",
-                            'msg': "用户注册成功"
-                        }, content_type='application/json')
+                        return resultJson(status.HTTP_200_OK, "", "用户注册成功")
                     else:
-                        return Response({
-                            'code': result_code,
-                            'data': "",
-                            'msg': "验证码错误"
-                        }, content_type='application/json')
-
-                return Response({
-                    'code': status.HTTP_400_BAD_REQUEST,
-                    'data': str(request.data),
-                    'msg': "当前用户已存在!!!"
-                }, content_type='application/json')
+                        return resultJson(result_code, "", "验证码错误")
+                return resultJson(status.HTTP_400_BAD_REQUEST, str(request.data), "当前用户已经存在！！！")
 
             elif path_info == "/login/":
-                return Response(path_info)
+                username = request.data['username']
+                password = request.data['password']
+
+                try:
+                    user = User.objects.get(username=username)
+                    if user.password == make_password(password, salt='pbkdf2_sha256'):
+                        # 生成一个token给登录的用户
+                        jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+                        jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+                        payload = jwt_payload_handler(user)
+                        token = jwt_encode_handler(payload)
+                        strtoken = {
+                            'code': status.HTTP_200_OK,
+                            'time': timezone.now(),
+                            'expire': settings.JWT_AUTH['JWT_EXPIRATION_DELTA'],
+                            'token': token
+                        }
+                        return resultJson(status.HTTP_200_OK, strtoken, "登录成功!!!")
+                    else:
+                        return resultJson(status.HTTP_401_UNAUTHORIZED, "", "密码错误")
+
+                except User.DoesNotExist:
+                    return resultJson(status.HTTP_401_UNAUTHORIZED, str(request.data), "密码错误")
         except Exception as es:
             return Response(es)
 
