@@ -20,5 +20,5 @@ query-string==1.0.2
 request==1.0.2
 requests==2.20.1
 uritemplate==3.0.0
-urllib3==1.24.1
+urllib3==1.26.5
 view==0.1
